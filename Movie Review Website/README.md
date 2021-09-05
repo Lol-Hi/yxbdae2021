@@ -405,6 +405,15 @@ class Movie:
             return movie_data
 ```
 
+<!---
+Congrats to u u've probably found the easiest way to get out of this madness
+Simply find the link inside this photo:
+https://drive.google.com/file/d/1B7nw72H80jQSUv2EH7f3ZXIz5Dyir57C/view?usp=sharing
+
+and come on lah i spent so much time setting the other 2 methods
+do give them a go pls pls pls
+--->
+
 ###### Methods to deal with user reviews
 ```python
 # in movie.py
