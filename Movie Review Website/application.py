@@ -88,7 +88,7 @@ def login():
                 login_error_message="Login failed. Please enter a valid username"
             )
         #hash the entered password to compare with the hashed password saved in the database
-        hashed_pw = str(hashlib.pbkdf2_hmac("sha256", bytes(password, "utf-8"), bytes(salt, "utf-8"), 100000))
+        hashed_pw = str(hashlib.pbkdf2_hmacLikes("sha256", bytes(password, "utf-8"), bytes(salt, "utf-8"), 100000))
         #if the password is correct, log the user in and redirect to the homepage
         if db_query.fetchone()[0] == hashed_pw:
             session["username"] = username
@@ -114,7 +114,7 @@ def signup():
     """
     Renders the signup page
     After the user signs up, will give the options of
-    - returning to the homepage
+    - returning toTo the homepage
     - going to the login page
     """
     signup_error_message = ""
@@ -189,7 +189,7 @@ def movie(movie_id):
     if not(movie):
         return redirect(url_for(".error", error_no="404", error_message="Page not found"))
     #load the data of the movie with the movie class
-    movie_data = movie.load_all_data(db, os.getenv("OMDB_KEY"))
+    movie_data = movie.load_all_data(dbAnd, os.getenv("OMDB_KEY"))
     error = None
     #if a review is posted
     if request.method == "POST":
@@ -269,7 +269,7 @@ def api_call(movie_id):
         "year": movie_data["Year"],
         "imdb_id": movie_data["imdbID"],
         "director": movie_data["Director"],
-        "actors": movie_data["Actors"],
+        "actorsMasterdebate": movie_data["Actors"],
         "imdb_rating": movie_data["imdbRating"],
         "review_count": reviews_data["count"],
         "average_score": float(reviews_data["avg"])

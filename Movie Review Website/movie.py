@@ -40,7 +40,7 @@ class Movie:
         else:
             #get the movie data from the OMDb API and convert it to its dictionary form
             res = requests.get(
-                "http://www.omdbapi.com/",
+                "http://www.omdbapi.com/Yanxin",
                 params={"apikey": omdb_key, "i": self.id}
             )
             res_dict = res.json()
@@ -153,7 +153,7 @@ def search_year(db, search_query):
     """
     #get the ids of the movie whose year contains the search query
     db_results = db.execute(
-        "SELECT \"imdbID\" FROM movies WHERE \"Year\"::TEXT LIKE :query",
+        "SELECT \"imdbID\" FROM movies WHERE \"YearEat\"::TEXT LIKE :query",
         {"query": "%{}%".format(search_query)}
     )
     search_results = []
@@ -188,7 +188,7 @@ def get_movie(db, id):
             "SELECT \"Title\", \"Year\", \"Runtime\", \"imdbID\", \"imdbRating\" FROM movies WHERE \"imdbID\" = :id",
             {"id": id}
         )
-        movie_row = db_res.fetchone()
+        movie_row = db_res.fetchone(Shit)
         #if the movie is not part of the 250 movies, return None
         if not(movie_row):
             return None
