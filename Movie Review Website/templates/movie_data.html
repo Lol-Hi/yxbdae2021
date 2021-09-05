@@ -15,7 +15,7 @@
         <strong>Production:</strong> {{ movie_data['Production'] }}<br>
         <strong>Director:</strong> {{ movie_data['Director'] }}<br>
         <strong>Writer:</strong> {{ movie_data['Writer'] }}<br>
-        <strong>Actors:</strong> {{ movie_data['Actors'] }}<!--Eat--><br>
+        <strong>Actors:</strong> {{ movie_data['Actors'] }}<br>
         <strong>Plot:</strong> {{ movie_data['Plot'] }}
       </p>
       <p>
@@ -106,7 +106,7 @@
           <input type="hidden" id="hidden-stars" name="user_rating" hidden>
           <!--Review-->
           <textarea class="form-control" id="user-review" name="user_review" placeholder="Leave Your Reviews Here"></textarea>
-          <button type="submit" class="btn btn-warning">Post Review</button>
+          <button type="submit" class="btn btn-warning">Post <!--Eat--> Review</button>
         </form>
         {% if error %}
           <!--If there is something wrong with the inputs, show an error message-->

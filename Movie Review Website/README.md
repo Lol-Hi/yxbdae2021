@@ -566,3 +566,5 @@ The movie pages can be accessed by searching with the search box on the navbar.
 Alternatively, you can access any movie page directly by its IMDb ID with `/movie/<IMDb_ID>`.
 
 There is also an API service that can be accessed with `/api/<IMDb_ID>`.
+
+<!-- nothing here lol -->

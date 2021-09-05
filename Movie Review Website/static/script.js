@@ -97,3 +97,7 @@ $( document ).ready( function() {
     };
   });
 });
+
+// nothing here lol
+// u got see this code in the README meh
+// smh cannot follow instructions
