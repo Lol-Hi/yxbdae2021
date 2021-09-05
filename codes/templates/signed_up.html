@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <div class="left-align">
+    <h1>You have signed up successfully!</h1>
+    <div id="signed-up-links">
+      <!--Return to homepage-->
+      <a class="btn btn-primary" href="{{ url_for('index') }}" role="button">Home</a>
+      <!--Go to login page-->
+      <a class="btn btn-primary" href="{{ url_for('login') }}" role="button">Log In</a>
+    </div>
+  </div>
+{% endblock %}

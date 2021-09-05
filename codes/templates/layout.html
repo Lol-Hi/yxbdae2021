@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Movie Reviews</title>
+    <!--Include bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Google Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--Link to CSS file-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css" media="screen" charset="utf-8">
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!--Link to JS file-->
+    <script type=text/javascript src="{{ url_for('static', filename='script.js') }}"></script>
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-light bg-warning justify-content-end" id="topnav">
+      <!--Search box-->
+      <div class="col" id="search_box">
+        <form class="input-group mb-3" action="{{ url_for('search') }}" method="post">
+          <input type="text" class="form-control" name="search" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-secondary" id="search_button" type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+      <div class="col" id="user_details">
+        {% if session["username"] %}
+          <!--Show user functions-->
+          <strong id="nav_greeting">Hello, {{ session["username"] }}!</strong>
+          <a role="button" class="btn btn-danger" href="{{ url_for('logout') }}">Log Out</a>
+        {% else %}
+          <!--Show login and sign-up buttons-->
+          <a role="button" class="btn btn-link" id="login_btn" href="{{ url_for('login') }}">Log In</a>
+          <a role="button" class="btn btn-info" id="signup_btn" href="{{ url_for('signup') }}">Sign Up</a>
+        {% endif %}
+      </div>
+    </nav>
+    <div id="block_contents">
+      {% block body %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

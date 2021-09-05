@@ -1,0 +1,135 @@
+body {
+  /*
+  The maroon background
+  By default the colour of the words would be white
+  since most of the backgrounds are dark
+  */
+  font-size: 18px;
+  background-color:	rgb(102,0,0);
+  color: white;
+  padding: 5px
+}
+
+#block_contents {
+  /*
+  The translucent black background
+  */
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 5px 10%;
+  padding: 10px;
+}
+
+#block_contents hr {
+  /*
+  By default the <hr> tags are black, so I had to make them white
+  I also made them more translucent so that it has a lighter colour
+  */
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.center-align {
+  /*
+  Makes it easier for me to define places where the content have to be center aligned
+  */
+  text-align: center;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+/*Navbar*/
+#search_box {
+  /*
+  This defines the col that contains the search box
+  Together with #user_details allows the contents of the navbar
+  to be split up on the two sides of the webpage
+  */
+  text-align: left;
+  padding-top: 5px;
+  min-width: 300px;
+}
+
+#user_details {
+  /*
+  This defines the col that contains the login, signup and logout buttons
+  Together with #user_details allows the contents of the navbar
+  to be split up on the two sides of the webpage
+  */
+  text-align: right;
+}
+
+#nav_greeting {
+  /*
+  The text in the navbar that says "Hello, ____!" after the user is logged in
+  */
+  color: rgb(102,0,0);
+  margin-right: 10px;
+}
+
+/*Signup and Login*/
+.login-signup-input {
+  max-width: 60%;
+  margin: auto 20%;
+}
+
+#signed-up-links {
+  /*
+  Links back to the homepage and to the login page after the user has signed up
+  */
+  margin: 15px 0;
+}
+
+/*Search Results*/
+.card {
+  /*
+  Individual search results
+  Also used in the comments
+  */
+  margin: 10px;
+}
+
+/*Movie Page*/
+#poster {
+  /*
+  This defines the col that contains the poster
+  */
+  padding-left: 20px;
+}
+
+.text-muted-white {
+  color: rgb(192, 192, 192);
+}
+
+#ratings, #reviews {
+  /*
+  This defines the cols that contain
+  - the IMDb rating, Metascore, Tomatometer and Box Office of the movie
+  - the reviews
+  */
+  padding: 0 20px;
+}
+
+tr.bg-warning {
+  /*
+  Changes the color of the headers of the table to black
+  (since bg-warning is quite a light colour)
+  */
+  color: black;
+}
+
+#user-review {
+  /*
+  Textarea for the user to type his/her review
+  */
+  margin: 10px 0;
+  color: black;
+  height: 100px;
+}
+
+.other-stars {
+  /*
+  Ratings of other users
+  */
+  font-size: 16px;
+}

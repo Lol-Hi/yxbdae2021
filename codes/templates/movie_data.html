@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-md-auto" id="poster">
+      <!--Movie poster-->
+      <img src="{{ movie_data['Poster'] }}">
+    </div>
+    <div class="col">
+      <!--Movie details-->
+      <h2>{{ movie_data['Title'] }} ({{ movie_data['Year'] }})</h2>
+      <p class="text-muted-white">{{ movie_data['imdbID'] }} | {{ movie_data['Rated'] }} | {{ movie_data['Runtime'] }} min</p>
+      <hr>
+      <p>
+        <strong>Production:</strong> {{ movie_data['Production'] }}<br>
+        <strong>Director:</strong> {{ movie_data['Director'] }}<br>
+        <strong>Writer:</strong> {{ movie_data['Writer'] }}<br>
+        <strong>Actors:</strong> {{ movie_data['Actors'] }}<br>
+        <strong>Plot:</strong> {{ movie_data['Plot'] }}
+      </p>
+      <p>
+        <strong>Release Date:</strong> {{ movie_data['Release_Date']}}<br>
+        <strong>Language:</strong> {{ movie_data['Language'] }}<br>
+        <strong>Awards:</strong> {{ movie_data['Awards'] }}
+      </p>
+      <p>
+        <strong>Website:</strong> <a target="_blank" href="{{ movie_data['Website'] }}">{{ movie_data['Website'] }}</a><br>
+        <strong>Genre:</strong> {{ movie_data['Genre'] }}
+      </p>
+    </div>
+  </div>
+  <div class="row center-align">
+    <div class="col" id="ratings">
+      <!--Table containing the IMDb rating, Metascore, Tomatometer and Box Office-->
+      <table class="table table-dark table-bordered">
+        <thead>
+          <tr class="bg-warning">
+            <th scope="col">IMDb Rating</th>
+            <th scope="col">Metascore</th>
+            <th scope="col">Tomatometer</th>
+            <th scope="col">Box Office</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ movie_data['imdbRating'] }}</td>
+            <td>{{ movie_data['Metascore'] }}</td>
+            <td>{{ movie_data['Rotten_Tomatoes'] }}</td>
+            <td>{{ movie_data['Box_Office'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col" id="reviews">
+      <hr>
+      <h3>Leave a Review</h3>
+      {% if can_review %}
+        <!--If the user is logged in and hasn't posted a review for this movie, allow him/her to post a review-->
+        <form action="{{ url_for('movie', movie_id=movie_data['imdbID']) }}" method="post">
+          <!--Rating (no. of stars)-->
+          <strong>Rating: </strong>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-success btn-sm" id="1-label">
+              <input type="checkbox" name="stars" class="stars" id="1-star" value="1" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+            <label class="btn btn-outline-success btn-sm" id="2-label">
+              <input type="checkbox" name="stars" class="stars" id="2-star" value="2" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+            <label class="btn btn-outline-success btn-sm" id="3-label">
+              <input type="checkbox" name="stars" class="stars" id="3-star" value="3" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+            <label class="btn btn-outline-success btn-sm" id="4-label">
+              <input type="checkbox" name="stars" class="stars" id="4-star" value="4" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+            <label class="btn btn-outline-success btn-sm" id="5-label">
+              <input type="checkbox" name="stars" class="stars" id="5-star" value="5" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+            <label class="btn btn-outline-success btn-sm" id="6-label">
+              <input type="checkbox" name="stars" class="stars" id="6-star" value="6" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+            <label class="btn btn-outline-success btn-sm" id="7-label">
+              <input type="checkbox" name="stars" class="stars" id="7-star" value="7" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+            <label class="btn btn-outline-success btn-sm" id="8-label">
+              <input type="checkbox" name="stars" class="stars" id="8-star" value="8" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+            <label class="btn btn-outline-success btn-sm" id="9-label">
+              <input type="checkbox" name="stars" class="stars" id="9-star" value="9" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+            <label class="btn btn-outline-success btn-sm" id="10-label">
+              <input type="checkbox" name="stars" class="stars" id="10-star" value="10" autocomplete="off">
+              <i class="material-icons">star</i>
+            </label>
+          </div>
+          <input type="hidden" id="hidden-stars" name="user_rating" hidden>
+          <!--Review-->
+          <textarea class="form-control" id="user-review" name="user_review" placeholder="Leave Your Reviews Here"></textarea>
+          <button type="submit" class="btn btn-warning">Post Review</button>
+        </form>
+        {% if error %}
+          <!--If there is something wrong with the inputs, show an error message-->
+          <em>{{ error }}</em><br>
+        {% endif %}
+        <br>
+      {% else %}
+        <!--If the user is not logged in or has already posted a review, show the relevant reason-->
+        <p>{{ cannot_review_reason }}</p>
+      {% endif %}
+      <h3>Reviews from other users</h3>
+      {% if reviews_available %}
+        <!--If there are reviews available for the movie, display them-->
+        {% for review in movie_reviews %}
+          <div class="card bg-dark">
+            <div class="card-body">
+              <h5 class="card-title">
+                <!--Display the username of the user who typed the review-->
+                <span class="text-warning">{{ review['username'] }}</span>
+                <!--Display the rating provided by the user-->
+                <span class="text-muted">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ review['rating'] }}&nbsp</span>
+                {% for i in range(0, review['rating']) %}
+                  <i class="material-icons other-stars text-success">star</i>
+                {% endfor %}
+                {% for i in range(review['rating'], 10) %}
+                  <i class="material-icons other-stars text-success">star_border</i>
+                {% endfor %}
+              </h5>
+              <!--Display the content of the review-->
+              <p class="card-text">{{ review['review'] }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>There are no reviews for this movie yet.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

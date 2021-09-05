@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <div class="center-align">
+    <h1>Movie Reviews!</h1>
+    <hr>
+    <p>Search for a movie in the search box to look at its reviews!</p>
+  </div>
+  <br>
+  <div id="recommendations">
+    <h3>Movie Recommendations</h3>
+    <!--Displays the 5 movies randomly picked from the database-->
+    {% for movie in movies %}
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><a href="/movie/{{ movie.id }}">{{ movie.title }} ({{ movie.year }})</a></h5>
+          <p class="card-subtitle text-muted">IMDb ID: {{ movie.id }} | Runtime: {{ movie.runtime }} | IMDb Rating: {{ movie.rating }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

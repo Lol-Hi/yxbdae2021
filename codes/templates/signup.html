@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form class="center-align" action="{{ url_for('signup') }}" method="post">
+  <h1>Sign Up</h1>
+  <div class="input-group mb-3 login-signup-input">
+    <!--Username-->
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1"><i class="material-icons">perm_identity</i></span>
+    </div>
+    <input type="username" class="form-control" name="signup_username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <!--Email-->
+  <div class="input-group mb-3 login-signup-input">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1"><i class="material-icons">email</i></span>
+    </div>
+    <input type="email" class="form-control" name="signup_email" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+  </div>
+  <!--Password-->
+  <div class="input-group mb-3 login-signup-input">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1"><i class="material-icons">vpn_key</i></span>
+    </div>
+    <input type="password" class="form-control" name="signup_password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+  </div>
+  <!--Confirm Password-->
+  <div class="input-group mb-3 login-signup-input">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1"><i class="material-icons">vpn_key</i></span>
+    </div>
+    <input type="password" class="form-control" name="signup_cfm_password" placeholder="Confirm Password" aria-label="Confirm_Password" aria-describedby="basic-addon1">
+  </div>
+  <button type="submit" class="btn btn-success">Sign Up</button>
+  <!--If there is something wrong with the inputs, show an error message-->
+  <br><em>{{ signup_error_message }}</em>
+</form>
+{% endblock %}

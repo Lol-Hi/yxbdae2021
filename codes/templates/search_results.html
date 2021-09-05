@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  {% if search_present %}
+    <p>Search results for "{{ query }}"</p>
+    <!--Displays all the movies that corresponds with the search query-->
+    {% for movie in search_results %}
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><a href="/movie/{{ movie.id }}">{{ movie.title }} ({{ movie.year }})</a></h5>
+          <p class="card-subtitle text-muted">IMDb ID: {{ movie.id }} | Runtime: {{ movie.runtime }} | IMDb Rating: {{ movie.rating }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No results found for "{{ query }}"</p>
+  {% endif %}
+{% endblock %}
